@@ -22,4 +22,10 @@ createInertiaApp({
             .component("Link", Link)
             .mount(el);
     },
+    // Custom progress indicator when loading a page takes time
+    progress: {
+        color: "#fff",
+        includeCSS: true,
+        showSpinner: true,
+    },
 });

@@ -5,7 +5,10 @@ defineProps({
 </script>
 
 <template>
+
+    <Head title="| About" />
     <div>
         <h1>About Page, Hello {{ user }}!</h1>
     </div>
+
 </template>

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -35,8 +36,19 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        // Set shared props that can be accessed with $page.props.<entry>
+        // Useful when you have the authenticated user
         return array_merge(parent::share($request), [
-            //
+            // Synchronously
+            "auth.user" => "Jon" ?? null,
+
+            // Alternative syntax
+            // Inertia::share("auth.user", "Jon")
+
+            // Lazily
+            // 'auth.user' => fn () => $request->user()
+            //     ? $request->user()->only('id', 'name', 'email')
+            //     : null,
         ]);
     }
 }

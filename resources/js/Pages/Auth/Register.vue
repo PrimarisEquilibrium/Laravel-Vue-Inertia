@@ -1,6 +1,7 @@
 <script setup>
 import { reactive } from "vue";
 import { router, useForm } from "@inertiajs/vue3";
+import TextInput from "../Components/TextInput.vue";
 
 // Using the VueJS router
 // const form = reactive({
@@ -37,30 +38,31 @@ const submit = () => {
     <div class="w-2/4 mx-auto"></div>
 
     <form @submit.prevent="submit">
-        <div class="mb-6">
-            <label>Name</label>
-            <input type="text" v-model="form.name" />
-            <!-- Displays the form error if the name field is invalid -->
-            <small>{{ form.errors.name }}</small>
-        </div>
+        <TextInput
+            name="name"
+            v-model="form.name"
+            :message="form.errors.name"
+        />
 
-        <div class="mb-6">
-            <label>Email</label>
-            <input type="text" v-model="form.email" />
-            <small>{{ form.errors.email }}</small>
-        </div>
+        <TextInput
+            name="email"
+            type="email"
+            v-model="form.email"
+            :message="form.errors.email"
+        />
 
-        <div class="mb-6">
-            <label>Password</label>
-            <input type="text" v-model="form.password" />
-            <small>{{ form.errors.password }}</small>
-        </div>
+        <TextInput
+            name="password"
+            type="password"
+            v-model="form.password"
+            :message="form.errors.password"
+        />
 
-        <div class="mb-6">
-            <label>Confirm Password</label>
-            <input type="text" v-model="form.password_confirmation" />
-            <small>{{ form.errors.password_confirmation }}</small>
-        </div>
+        <TextInput
+            name="confirm password"
+            type="password"
+            v-model="form.password_confirmation"
+        />
 
         <div>
             <p class="text-slate-600 mb-2">

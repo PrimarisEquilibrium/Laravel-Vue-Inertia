@@ -39,16 +39,9 @@ class HandleInertiaRequests extends Middleware
         // Set shared props that can be accessed with $page.props.<entry>
         // Useful when you have the authenticated user
         return array_merge(parent::share($request), [
-            // Synchronously
-            "auth.user" => "Jon" ?? null,
-
-            // Alternative syntax
-            // Inertia::share("auth.user", "Jon")
-
-            // Lazily
-            // 'auth.user' => fn () => $request->user()
-            //     ? $request->user()->only('id', 'name', 'email')
-            //     : null,
+            'auth.user' => fn () => $request->user()
+                ? $request->user()->only('id', 'name')
+                : null,
         ]);
     }
 }
